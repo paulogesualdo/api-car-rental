@@ -1,20 +1,14 @@
-const Hapi = require('@hapi/hapi');
+const server = require('./server');
 
 const init = async () => {
-
-    const server = Hapi.server({
-        port: 3000,
-        host: 'localhost'
-    });
-
-    await server.start();
-    console.log('Server running on %s', server.info.uri);
-};
-
-process.on('unhandledRejection', (err) => {
-
-    console.log(err);
-    process.exit(1);
-});
+    try {
+      const serverInstance = await server;
+  
+      await serverInstance.start();
+      console.log("message: Server listening on port  3000");
+    } catch (error) {
+      console.log("message: App failed to start" );
+    }
+  };
 
 init();
