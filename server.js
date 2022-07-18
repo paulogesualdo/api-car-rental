@@ -1,5 +1,4 @@
-const Hapi = require('hapi');
-const config = require('./config');
+const Hapi = require('@hapi/hapi');
 
 module.exports = (async () => {
   const server = new Hapi.server({
