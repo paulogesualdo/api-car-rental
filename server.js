@@ -1,10 +1,10 @@
 const Hapi = require('@hapi/hapi');
-const environmentVariables = require('dotenv').config()
+const config = require("./config")
 
 module.exports = (async () => {
   const server = new Hapi.server({
-        port: process.env.PORT,
-        host: process.env.HOST
+        port: config.environmentVariables.PORT,
+        host: config.environmentVariables.HOST
     });
 
   return server;
