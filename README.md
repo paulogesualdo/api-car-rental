@@ -49,5 +49,3 @@ http://localhost:3000/api/docs
 # ou para executar todos os testes
 > npm run test:all
 ````
-
-
