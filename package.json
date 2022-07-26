@@ -1,5 +1,5 @@
 {
-  "name": "JavaScript",
+  "name": "javascript",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,5 +18,8 @@
     "@hapi/hapi": "^20.2.2",
     "dotenv": "^16.0.1",
     "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0"
   }
 }
