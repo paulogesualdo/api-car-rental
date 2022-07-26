@@ -1,10 +1,10 @@
-const Hapi = require("@hapi/hapi");
-const config = require("./config");
+const Hapi = require('@hapi/hapi');
+const config = require('./config');
 
 module.exports = (async () => {
-  const server = new Hapi.server({
+  const server = new Hapi.Server({
     port: config.environmentVariables.PORT,
-    host: config.environmentVariables.HOST
+    host: config.environmentVariables.HOST,
   });
 
   return server;
