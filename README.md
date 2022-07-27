@@ -34,6 +34,7 @@ TIMEZONE=America/Sao_Paulo
 > Comandos de inicialização:
 ````bash
 > npm install # Instala dependências
+> npm run start # Inicia o servidor em ambiente de produção
 > npm run start:dev # Inicia o servidor em ambiente de desenvolvimento
 ````
 
@@ -45,7 +46,15 @@ http://localhost:3000/api/docs
 ## Como executar testes
 > Comandos de inicialização:
 ````bash
-> npm test:unit # Executa testes unitários
+> npm run test:unit # Executa testes unitários
 # ou para executar todos os testes
 > npm run test:all
+````
+
+## Como executar o validador de código
+> Comandos de inicialização:
+````bash
+> npm run lint # Executa a validação do código
+# ou para executar automático a correção
+> npm run lint:fix
 ````
