@@ -1,7 +1,7 @@
 {
-  "name": "javascript",
+  "name": "API-Car-Rental",
   "version": "1.0.0",
-  "description": "",
+  "description": "Construção de uma API REST para locadora de carros",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -18,7 +18,12 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^20.2.2",
-    "dotenv": "^16.0.1"
+    "@hapi/inert": "^7.0.0",
+    "@hapi/vision": "^7.0.0",
+    "dotenv": "^16.0.1",
+    "hapi-swaggered": "^3.0.2",
+    "hapi-swaggered-ui": "^3.1.0",
+    "joi": "^14.3.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

@@ -1,2 +1,3 @@
-const environmentVariables = require("./environmentVariables")
-module.exports = {environmentVariables}
+const environmentVariables = require('./environmentVariables');
+
+module.exports = { environmentVariables };
