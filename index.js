@@ -11,6 +11,7 @@ const init = async () => {
     );
   } catch (error) {
     console.log('message: App failed to start');
+    console.log(error.message);
   }
 };
 
