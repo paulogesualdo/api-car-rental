@@ -1,5 +1,5 @@
 {
-  "name": "API-Car-Rental",
+  "name": "api-car-rental",
   "version": "1.0.0",
   "description": "Construção de uma API REST para locadora de carros",
   "main": "index.js",
@@ -9,6 +9,7 @@
     "lint": "eslint *.js",
     "lint:fix": "eslint --fix *.js",
     "prepare": "husky install",
+    "test": "mocha ./test",
     "test:unit": "mocha ./test/v1/unit/**/*.spec.js"
   },
   "engines": {
