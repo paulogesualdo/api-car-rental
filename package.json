@@ -7,7 +7,9 @@
     "start": "node index.js",
     "start:dev": "nodemon index.js",
     "lint": "eslint *.js",
-    "lint:fix": "eslint --fix *.js"
+    "lint:fix": "eslint --fix *.js",
+    "prepare": "husky install",
+    "test:unit": "mocha ./test/v1/unit/**/*.spec.js"
   },
   "engines": {
     "node": "^v14.17.0",
@@ -27,10 +29,14 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "chai": "^4.3.6",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.9.0",
-    "nodemon": "^2.0.19"
+    "husky": "^8.0.1",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19",
+    "sinon": "^14.0.0"
   }
 }
