@@ -1,0 +1,46 @@
+{
+  "name": "api-car-rental",
+  "version": "1.0.0",
+  "description": "Construção de uma API REST para locadora de carros",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "lint": "eslint *.js",
+    "lint:fix": "eslint --fix *.js",
+    "prepare": "husky install",
+    "test": "npm run test:unit && npm run test:int",
+    "test:unit": "mocha ./test/v1/unit/**/*.spec.js",
+    "test:int": "mocha ./test/v1/integration/*.spec.js"
+  },
+  "engines": {
+    "node": "^v14.17.0",
+    "npm": "^v6.4.13"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^20.2.2",
+    "@hapi/inert": "^7.0.0",
+    "@hapi/vision": "^7.0.0",
+    "dotenv": "^16.0.1",
+    "hapi-alive": "^2.0.4",
+    "hapi-response-time": "^2.2.3",
+    "hapi-swaggered": "^3.0.2",
+    "hapi-swaggered-ui": "^3.1.0",
+    "joi": "^14.3.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "chai": "^4.3.6",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.9.0",
+    "husky": "^8.0.1",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.19",
+    "sinon": "^14.0.0"
+  }
+}
