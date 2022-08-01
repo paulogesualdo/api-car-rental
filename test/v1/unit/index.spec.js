@@ -1,5 +1,5 @@
 const chai = require('chai');
-const server = require('../server');
+const server = require('../../../server');
 
 describe('server', () => {
   it('deve ser um objeto', async () => {
