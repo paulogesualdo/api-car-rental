@@ -10,7 +10,8 @@
     "lint:fix": "eslint --fix *.js",
     "prepare": "husky install",
     "test": "mocha ./test",
-    "test:unit": "mocha ./test/v1/unit/**/*.spec.js"
+    "test:unit": "mocha ./test/v1/unit/**/*.spec.js",
+    "test:int": "mocha ./test/v1/integration/*.spec.js"
   },
   "engines": {
     "node": "^v14.17.0",
@@ -24,6 +25,8 @@
     "@hapi/inert": "^7.0.0",
     "@hapi/vision": "^7.0.0",
     "dotenv": "^16.0.1",
+    "hapi-alive": "^2.0.4",
+    "hapi-response-time": "^2.2.3",
     "hapi-swaggered": "^3.0.2",
     "hapi-swaggered-ui": "^3.1.0",
     "joi": "^14.3.1"

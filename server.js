@@ -1,6 +1,7 @@
 const Hapi = require('@hapi/hapi');
 const config = require('./config');
 const registers = require('./register');
+const v1 = require('./v1/routes');
 
 module.exports = (async () => {
   const server = new Hapi.Server({
@@ -9,6 +10,8 @@ module.exports = (async () => {
   });
 
   await server.register(registers);
+
+  server.route(v1);
 
   return server;
 })();
