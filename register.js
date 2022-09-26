@@ -1,3 +1,6 @@
+// São importados diversos módulos externos, cada um para uma tarefa
+// específica
+
 const Inert = require('inert');
 const Vision = require('vision');
 const HapiAlive = require('hapi-alive');
