@@ -42,7 +42,7 @@ const carsWrapper = ({ config, commons, application }) => {
   const getCars = async ({ event, onSucess, onError }) => {
     try {
       const client = await pool.connect();
-      const result = await client.query(`SELECT * FROM cars`);
+      const result = await client.query('SELECT * FROM cars');
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ carsList: results, version: application.version });
