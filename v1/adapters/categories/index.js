@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+const { v4: uuid } = require('uuid');
 
 const categoriesWrapper = ({ config, commons, application }) => {
 
@@ -40,11 +41,12 @@ const categoriesWrapper = ({ config, commons, application }) => {
   const postCategory = async ({ event, onSucess, onError }) => {
     try {
       const client = await pool.connect();
+      const id = uuid();
       await client.query(`INSERT INTO categories VALUES(
-        ${event.payload.id}, 
+        '${id}', 
         '${event.payload.name}', 
         '${event.payload.description}')`);
-      const result = await client.query(`SELECT * FROM categories WHERE id = '${event.payload.id}'`);
+      const result = await client.query(`SELECT * FROM categories WHERE id = '${id}'`);
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ categoriesList: results, version: application.version });
@@ -59,11 +61,10 @@ const categoriesWrapper = ({ config, commons, application }) => {
     try {
       const client = await pool.connect();
       await client.query(`UPDATE categories SET
-        id = ${event.payload.id}, 
         name = '${event.payload.name}', 
         description = '${event.payload.description}'
         WHERE id = '${event.params.id}'`);
-      const result = await client.query(`SELECT * FROM categories WHERE id = '${event.payload.id}'`);
+      const result = await client.query(`SELECT * FROM categories WHERE id = '${event.params.id}'`);
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ categoriesList: results, version: application.version });
