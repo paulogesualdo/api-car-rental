@@ -45,21 +45,21 @@ const carsWrapper = ({ config, commons, application }) => {
     try {
       const client = await pool.connect();
       const result = await client.query(`
-        select
+        SELECT
           car.id, 
           car.name, 
           car.brand, 
           car.description, 
           car.dailyRate, 
           car.categoryId, 
-          cat.name as categoryName, 
-          cat.description as categoryDescription, 
+          cat.name AS categoryName, 
+          cat.description AS categoryDescription, 
           car.available, 
           car.licensePlate 
-        from 
-          cars as car, 
-          categories as cat 
-        where 
+        FROM 
+          cars AS car, 
+          categories AS cat 
+        WHERE 
           car.categoryId = cat.id
       `);
       const results = { results: (result) ? result.rows : null };
@@ -76,21 +76,21 @@ const carsWrapper = ({ config, commons, application }) => {
     try {
       const client = await pool.connect();
       const result = await client.query(`
-        select
+        SELECT
           car.id, 
           car.name, 
           car.brand, 
           car.description, 
           car.dailyRate, 
           car.categoryId, 
-          cat.name as categoryName, 
-          cat.description as categoryDescription, 
+          cat.name AS categoryName, 
+          cat.description AS categoryDescription, 
           car.available, 
           car.licensePlate 
-        from 
-          cars as car, 
-          categories as cat 
-        where 
+        FROM 
+          cars AS car, 
+          categories AS cat 
+        WHERE 
           car.categoryId = cat.id and
           car.id = '${event.params.id}'
       `);
@@ -108,7 +108,8 @@ const carsWrapper = ({ config, commons, application }) => {
     try {
       const client = await pool.connect();
       const id = uuid();
-      await client.query(`INSERT INTO cars VALUES(
+      await client.query(`
+        INSERT INTO cars VALUES(
         '${id}',
         '${event.payload.name}', 
         '${event.payload.brand}', 
@@ -116,24 +117,24 @@ const carsWrapper = ({ config, commons, application }) => {
         ${event.payload.dailyRate}, 
         '${event.payload.categoryId}', 
         ${event.payload.available}, 
-        '${event.payload.licensePlate}')`);
-      // const result = await client.query(`SELECT * FROM cars WHERE id = '${id}'`);
+        '${event.payload.licensePlate}')
+      `);
       const result = await client.query(`
-        select
+        SELECT
           car.id, 
           car.name, 
           car.brand, 
           car.description, 
           car.dailyRate, 
           car.categoryId, 
-          cat.name as categoryName, 
-          cat.description as categoryDescription, 
+          cat.name AS categoryName, 
+          cat.description AS categoryDescription, 
           car.available, 
           car.licensePlate 
-        from 
-          cars as car, 
-          categories as cat 
-        where 
+        FROM 
+          cars AS car, 
+          categories AS cat 
+        WHERE 
           car.categoryId = cat.id and
           car.id = '${id}'
       `);
@@ -150,32 +151,34 @@ const carsWrapper = ({ config, commons, application }) => {
   const putCar = async ({ event, onSucess, onError }) => {
     try {
       const client = await pool.connect();
-      await client.query(`UPDATE cars SET
-        name = '${event.payload.name}', 
-        brand = '${event.payload.brand}', 
-        description = '${event.payload.description}',
-        dailyRate = ${event.payload.dailyRate}, 
-        categoryId = '${event.payload.categoryId}', 
-        available = ${event.payload.available}, 
-        licensePlate = '${event.payload.licensePlate}'
-        WHERE id = '${event.params.id}'`);
-      // const result = await client.query(`SELECT * FROM cars WHERE id = '${event.params.id}'`);
+      await client.query(`
+        UPDATE cars
+        SET
+          name = '${event.payload.name}', 
+          brand = '${event.payload.brand}', 
+          description = '${event.payload.description}',
+          dailyRate = ${event.payload.dailyRate}, 
+          categoryId = '${event.payload.categoryId}', 
+          available = ${event.payload.available}, 
+          licensePlate = '${event.payload.licensePlate}'
+        WHERE id = '${event.params.id}'
+      `);
       const result = await client.query(`
-        select
+        SELECT
           car.id, 
           car.name, 
           car.brand, 
           car.description, 
           car.dailyRate, 
           car.categoryId, 
-          cat.name as categoryName, 
-          cat.description as categoryDescription, 
+          cat.name AS categoryName, 
+          cat.description AS categoryDescription, 
           car.available, 
           car.licensePlate 
-        from 
-          cars as car, 
-          categories as cat 
-        where 
+        FROM 
+          cars AS car, 
+          categories AS cat 
+        WHERE 
           car.categoryId = cat.id and
           car.id = '${event.params.id}'
       `);
@@ -194,21 +197,21 @@ const carsWrapper = ({ config, commons, application }) => {
       const client = await pool.connect();
       await client.query(`DELETE FROM cars WHERE id = '${event.params.id}'`);
       const result = await client.query(`
-        select
+        SELECT
           car.id, 
           car.name, 
           car.brand, 
           car.description, 
           car.dailyRate, 
           car.categoryId, 
-          cat.name as categoryName, 
-          cat.description as categoryDescription, 
+          cat.name AS categoryName, 
+          cat.description AS categoryDescription, 
           car.available, 
           car.licensePlate 
-        from 
-          cars as car, 
-          categories as cat 
-        where 
+        FROM 
+          cars AS car, 
+          categories AS cat 
+        WHERE 
           car.categoryId = cat.id and
           car.id = '${event.params.id}'
       `);
