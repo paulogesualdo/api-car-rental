@@ -79,7 +79,7 @@ const carsWrapper = ({ config, commons, application }) => {
         '${event.payload.brand}', 
         '${event.payload.description}',
         ${event.payload.dailyRate}, 
-        ${event.payload.categoryId}, 
+        '${event.payload.categoryId}', 
         ${event.payload.available}, 
         '${event.payload.licensePlate}')`);
       const result = await client.query(`SELECT * FROM cars WHERE id = '${id}'`);
@@ -101,7 +101,7 @@ const carsWrapper = ({ config, commons, application }) => {
         brand = '${event.payload.brand}', 
         description = '${event.payload.description}',
         dailyRate = ${event.payload.dailyRate}, 
-        categoryId = ${event.payload.categoryId}, 
+        categoryId = '${event.payload.categoryId}', 
         available = ${event.payload.available}, 
         licensePlate = '${event.payload.licensePlate}'
         WHERE id = '${event.params.id}'`);
