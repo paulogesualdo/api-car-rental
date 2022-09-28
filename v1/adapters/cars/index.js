@@ -3,6 +3,8 @@
 
 const { Pool } = require('pg');
 
+const { v4: uuid } = require('uuid');
+
 // Dentro da constante 'carsWrapper' será armazenada uma
 // função que recebe um objeto como parâmetro e retorna
 // também um objeto.
@@ -56,7 +58,7 @@ const carsWrapper = ({ config, commons, application }) => {
   const getCarById = async ({ event, onSucess, onError }) => {
     try {
       const client = await pool.connect();
-      const result = await client.query(`SELECT * FROM cars WHERE licensePlate = '${event.params.id}'`);
+      const result = await client.query(`SELECT * FROM cars WHERE id = '${event.params.id}'`);
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ carsList: results, version: application.version });
@@ -70,7 +72,9 @@ const carsWrapper = ({ config, commons, application }) => {
   const postCar = async ({ event, onSucess, onError }) => {
     try {
       const client = await pool.connect();
+      const id = uuid();
       await client.query(`INSERT INTO cars VALUES(
+        '${id}',
         '${event.payload.name}', 
         '${event.payload.brand}', 
         '${event.payload.description}',
@@ -78,7 +82,7 @@ const carsWrapper = ({ config, commons, application }) => {
         ${event.payload.categoryId}, 
         ${event.payload.available}, 
         '${event.payload.licensePlate}')`);
-      const result = await client.query(`SELECT * FROM cars WHERE licensePlate = '${event.payload.licensePlate}'`);
+      const result = await client.query(`SELECT * FROM cars WHERE id = '${id}'`);
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ carsList: results, version: application.version });
@@ -100,8 +104,8 @@ const carsWrapper = ({ config, commons, application }) => {
         categoryId = ${event.payload.categoryId}, 
         available = ${event.payload.available}, 
         licensePlate = '${event.payload.licensePlate}'
-        WHERE licensePlate = '${event.params.id}'`);
-      const result = await client.query(`SELECT * FROM cars WHERE licensePlate = '${event.payload.licensePlate}'`);
+        WHERE id = '${event.params.id}'`);
+      const result = await client.query(`SELECT * FROM cars WHERE id = '${event.params.id}'`);
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ carsList: results, version: application.version });
@@ -115,8 +119,8 @@ const carsWrapper = ({ config, commons, application }) => {
   const deleteCar = async ({ event, onSucess, onError }) => {
     try {
       const client = await pool.connect();
-      await client.query(`DELETE FROM cars WHERE licensePlate = '${event.params.id}'`);
-      const result = await client.query(`SELECT * FROM cars WHERE licensePlate = '${event.params.id}'`);
+      await client.query(`DELETE FROM cars WHERE id = '${event.params.id}'`);
+      const result = await client.query(`SELECT * FROM cars WHERE id = '${event.params.id}'`);
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ carsList: results, version: application.version });
