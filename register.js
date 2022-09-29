@@ -1,6 +1,10 @@
 // São importados diversos módulos externos, cada um para uma tarefa
 // específica
 
+// Os seguintes módulos são utilizados para
+// documentar a API utilizando Swagger: Inert,
+// Vision, HapiSwaggered e HapiSwaggeredUi
+
 const Inert = require('inert');
 const Vision = require('vision');
 const HapiAlive = require('hapi-alive');
@@ -26,7 +30,7 @@ module.exports = [
   {
     plugin: HapiSwaggeredUi,
     options: {
-      title: 'Example API',
+      title: pack.name,
       path: '/docs',
       swaggerOptions: {
         validatorUrl: null,

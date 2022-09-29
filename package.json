@@ -1,7 +1,7 @@
 {
   "name": "api-car-rental",
   "version": "1.0.0",
-  "description": "Construção de uma API REST para locadora de carros",
+  "description": "API REST para locadora de carros",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
