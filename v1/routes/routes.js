@@ -1,3 +1,7 @@
+// É importado o módulo Joi que auxilia nos parâmetros das rotas
+// para que possa ser documentado corretamente no Swagger
+const Joi = require('joi');
+
 const controller = require('../controllers');
 
 const getCars = {
@@ -51,6 +55,8 @@ const getCategories = {
   config: {
     tags: ['api'],
     handler: controller.getCategories,
+    description: 'Obter categorias',
+    notes: 'Obtém todas as categorias que estão cadastradas na base de dados'
   },
 };
 
@@ -60,6 +66,13 @@ const getCategoryById = {
   config: {
     tags: ['api'],
     handler: controller.getCategoryById,
+    description: 'Obter categoria por id',
+    notes: 'Obtém a categoria cujo id é passado como parâmetro',
+    validate: {
+      params: Joi.object({
+        id: Joi.string().required(),
+      }),
+    },
   },
 };
 
@@ -69,6 +82,14 @@ const postCategory = {
   config: {
     tags: ['api'],
     handler: controller.postCategory,
+    description: 'Cadastrar categoria',
+    notes: 'Cadastra as categorias cujos dados são passados no corpo da requisição',
+    validate: {
+      payload: Joi.object({
+        name: Joi.string().required(),
+        description: Joi.string().required(),
+      }),
+    },
   },
 };
 
@@ -78,6 +99,17 @@ const putCategory = {
   config: {
     tags: ['api'],
     handler: controller.putCategory,
+    description: 'Modificar categoria',
+    notes: 'Modifica a categoria cujo id é passado como parâmetro e os dados são passados no corpo da requisição',
+    validate: {
+      params: Joi.object({
+        id: Joi.string().required(),
+      }),
+      payload: Joi.object({
+        name: Joi.string().required(),
+        description: Joi.string().required(),
+      }),
+    },
   },
 };
 
@@ -87,6 +119,13 @@ const deleteCategory = {
   config: {
     tags: ['api'],
     handler: controller.deleteCategory,
+    description: 'Excluir categoria',
+    notes: 'Exclui a categoria cujo id é passado como parâmetro',
+    validate: {
+      params: Joi.object({
+        id: Joi.string().required(),
+      }),
+    },
   },
 };
 
