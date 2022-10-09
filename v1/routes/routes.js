@@ -10,6 +10,8 @@ const getCars = {
   config: {
     tags: ['api'],
     handler: controller.getCars,
+    description: 'Obter carros',
+    notes: 'Obtém todos carros que estão cadastrados na base de dados',
   },
 };
 
@@ -19,6 +21,13 @@ const getCarById = {
   config: {
     tags: ['api'],
     handler: controller.getCarById,
+    description: 'Obter carro por id',
+    notes: 'Obtém o carro cujo id é passado como parâmetro',
+    validate: {
+      params: Joi.object({
+        id: Joi.string().required(),
+      }),
+    },
   },
 };
 
@@ -28,6 +37,19 @@ const postCar = {
   config: {
     tags: ['api'],
     handler: controller.postCar,
+    description: 'Cadastrar carro',
+    notes: 'Cadastra o carro cujos dados são passados no corpo da requisição',
+    validate: {
+      payload: Joi.object({
+        name: Joi.string().required(),
+        brand: Joi.string().required(),
+        description: Joi.string().required(),
+        dailyRate: Joi.number().required(),
+        categoryId: Joi.string().required(),
+        available: Joi.boolean().required(),
+        licensePlate: Joi.string().required(),
+      }),
+    },
   },
 };
 
@@ -37,6 +59,22 @@ const putCar = {
   config: {
     tags: ['api'],
     handler: controller.putCar,
+    description: 'Modificar carro',
+    notes: 'Modifica o carro cujo id é passado como parâmetro e os dados são passados no corpo da requisição',
+    validate: {
+      params: Joi.object({
+        id: Joi.string().required(),
+      }),
+      payload: Joi.object({
+        name: Joi.string().required(),
+        brand: Joi.string().required(),
+        description: Joi.string().required(),
+        dailyRate: Joi.number().required(),
+        categoryId: Joi.string().required(),
+        available: Joi.boolean().required(),
+        licensePlate: Joi.string().required(),
+      }),
+    },
   },
 };
 
@@ -46,6 +84,8 @@ const deleteCar = {
   config: {
     tags: ['api'],
     handler: controller.deleteCar,
+    description: 'Excluir carro',
+    notes: 'Exclui o carro cujo id é passado como parâmetro',
   },
 };
 
