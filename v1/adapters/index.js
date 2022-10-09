@@ -1,11 +1,13 @@
 // Este código é o index dos adapters
 
-// É importado o adapter da entidade cars e armazenado
-// na constante carsWrapper. Ou seja, foi importada uma
-// função que recebe três parâmetros (config, commons e
-// aplication) e retorna os resultados das rotas
+// São importados os adapters das entidades cars e
+// categories e armazenados nas respectivas constantes.
+// Ou seja, são importadas funções que recebem três
+// parâmetros (config, commons e aplication) e retornam
+// os resultados das rotas
 
 const carsWrapper = require('./cars');
+const categoriesWrapper = require('./categories');
 
 // É exportada uma função anônima que recebe como
 // parâmetro o objeto 'dependencies', que contém os
@@ -19,7 +21,6 @@ const carsWrapper = require('./cars');
 // - application: Algumas informações sobre a aplicação
 //   como nome, versão, descrição, que vieram do arquivo
 //   package.json que está na raiz do sistema
-// Esta função anônima retorna como 
 
 module.exports = dependencies => ({
 
@@ -61,5 +62,37 @@ module.exports = dependencies => ({
     commons: dependencies.commons,
     application: dependencies.application,
   }).deleteCar,
+
+  getCategories: categoriesWrapper({
+
+    config: dependencies.config,
+    commons: dependencies.commons,
+    application: dependencies.application,
+
+  }).getCategories,
+
+  getCategoryById: categoriesWrapper({
+    config: dependencies.config,
+    commons: dependencies.commons,
+    application: dependencies.application,
+  }).getCategoryById,
+
+  postCategory: categoriesWrapper({
+    config: dependencies.config,
+    commons: dependencies.commons,
+    application: dependencies.application,
+  }).postCategory,
+
+  putCategory: categoriesWrapper({
+    config: dependencies.config,
+    commons: dependencies.commons,
+    application: dependencies.application,
+  }).putCategory,
+
+  deleteCategory: categoriesWrapper({
+    config: dependencies.config,
+    commons: dependencies.commons,
+    application: dependencies.application,
+  }).deleteCategory,
 
 });
