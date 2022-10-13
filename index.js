@@ -90,3 +90,5 @@ const init = async () => {
 // do Hapi será iniciado na porta e no ambiente correspondentes.
 
 init();
+
+module.exports = { init };

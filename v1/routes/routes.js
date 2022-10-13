@@ -96,7 +96,7 @@ const getCategories = {
     tags: ['api'],
     handler: controller.getCategories,
     description: 'Obter categorias',
-    notes: 'Obtém todas as categorias que estão cadastradas na base de dados'
+    notes: 'Obtém todas as categorias que estão cadastradas na base de dados',
   },
 };
 
