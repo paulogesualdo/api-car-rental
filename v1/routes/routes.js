@@ -86,6 +86,11 @@ const deleteCar = {
     handler: controller.deleteCar,
     description: 'Excluir carro',
     notes: 'Exclui o carro cujo id é passado como parâmetro',
+    validate: {
+      params: Joi.object({
+        id: Joi.string().required(),
+      }),
+    },
   },
 };
 
