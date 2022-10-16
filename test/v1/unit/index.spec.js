@@ -6,6 +6,8 @@ process.env.NODE_ENV = 'test';
 
 const pathCategories = '/v1/categories';
 const pathCategoryById = '/v1/categories/{id}';
+const pathCars = '/v1/cars';
+const pathCarById = '/v1/cars/{id}';
 
 describe('server', () => {
   it('deve ser um objeto', async () => {
@@ -110,5 +112,95 @@ describe('rota deleteCategory', () => {
   });
   it('deve ter uma propriedade config.validate.params', async () => {
     chai.expect(routes.deleteCategory.config.validate).to.have.property('params');
+  });
+});
+
+describe('rota getCars', () => {
+  it('deve ser um objeto', async () => {
+    chai.expect(typeof routes.getCars).to.equal('object');
+  });
+  it(`deve ter uma propriedade path igual a ${pathCars}`, async () => {
+    chai.expect(routes.getCars).to.have.property('path').eql(pathCars);
+  });
+  it('deve ter uma propriedade method igual a GET', async () => {
+    chai.expect(routes.getCars).to.have.property('method').eql('GET');
+  });
+  it('deve ter uma propriedade config.handler', async () => {
+    chai.expect(routes.getCars.config).to.have.property('handler');
+  });
+});
+
+describe('rota getCarById', () => {
+  it('deve ser um objeto', async () => {
+    chai.expect(typeof routes.getCarById).to.equal('object');
+  });
+  it(`deve ter uma propriedade path igual a ${pathCarById}`, async () => {
+    chai.expect(routes.getCarById).to.have.property('path').eql(pathCarById);
+  });
+  it('deve ter uma propriedade method igual a GET', async () => {
+    chai.expect(routes.getCarById).to.have.property('method').eql('GET');
+  });
+  it('deve ter uma propriedade config.handler', async () => {
+    chai.expect(routes.getCarById.config).to.have.property('handler');
+  });
+  it('deve ter uma propriedade config.validate.params', async () => {
+    chai.expect(routes.getCarById.config.validate).to.have.property('params');
+  });
+});
+
+describe('rota postCar', () => {
+  it('deve ser um objeto', async () => {
+    chai.expect(typeof routes.postCar).to.equal('object');
+  });
+  it(`deve ter uma propriedade path igual a ${pathCars}`, async () => {
+    chai.expect(routes.postCar).to.have.property('path').eql(pathCars);
+  });
+  it('deve ter uma propriedade method igual a POST', async () => {
+    chai.expect(routes.postCar).to.have.property('method').eql('POST');
+  });
+  it('deve ter uma propriedade config.handler', async () => {
+    chai.expect(routes.postCar.config).to.have.property('handler');
+  });
+  it('deve ter uma propriedade config.validate.payload', async () => {
+    chai.expect(routes.postCar.config.validate).to.have.property('payload');
+  });
+});
+
+describe('rota putCar', () => {
+  it('deve ser um objeto', async () => {
+    chai.expect(typeof routes.putCar).to.equal('object');
+  });
+  it(`deve ter uma propriedade path igual a ${pathCarById}`, async () => {
+    chai.expect(routes.putCar).to.have.property('path').eql(pathCarById);
+  });
+  it('deve ter uma propriedade method igual a PUT', async () => {
+    chai.expect(routes.putCar).to.have.property('method').eql('PUT');
+  });
+  it('deve ter uma propriedade config.handler', async () => {
+    chai.expect(routes.putCar.config).to.have.property('handler');
+  });
+  it('deve ter uma propriedade config.validate.params', async () => {
+    chai.expect(routes.putCar.config.validate).to.have.property('params');
+  });
+  it('deve ter uma propriedade config.validate.payload', async () => {
+    chai.expect(routes.putCar.config.validate).to.have.property('payload');
+  });
+});
+
+describe('rota deleteCar', () => {
+  it('deve ser um objeto', async () => {
+    chai.expect(typeof routes.deleteCar).to.equal('object');
+  });
+  it(`deve ter uma propriedade path igual a ${pathCarById}`, async () => {
+    chai.expect(routes.deleteCar).to.have.property('path').eql(pathCarById);
+  });
+  it('deve ter uma propriedade method igual a DELETE', async () => {
+    chai.expect(routes.deleteCar).to.have.property('method').eql('DELETE');
+  });
+  it('deve ter uma propriedade config.handler', async () => {
+    chai.expect(routes.deleteCar.config).to.have.property('handler');
+  });
+  it('deve ter uma propriedade config.validate.params', async () => {
+    chai.expect(routes.deleteCar.config.validate).to.have.property('params');
   });
 });
