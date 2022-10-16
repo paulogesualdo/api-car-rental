@@ -48,6 +48,8 @@ describe('ciclo de registro de categorias no banco de dados', () => {
         categoriaCadastrada.should.have.property('name').eql(name);
         categoriaCadastrada.should.have.property('description').eql(description);
         done();
+        console.log(categoriaCadastrada);
+        console.log();
       });
 
   });
@@ -60,6 +62,8 @@ describe('ciclo de registro de categorias no banco de dados', () => {
         res.body.should.be.a('object');
         res.body.response.categoriesList.results.length.should.be.at.least(1);
         done();
+        console.log(`Número de registros encontrados: ${res.body.response.categoriesList.results.length}`);
+        console.log();
       });
   });
 
@@ -71,10 +75,12 @@ describe('ciclo de registro de categorias no banco de dados', () => {
         res.body.should.be.a('object');
         res.body.response.categoriesList.results.should.be.a('array');
         const [categoriaCadastrada] = res.body.response.categoriesList.results;
-        categoriaCadastrada.should.have.property('id');
+        categoriaCadastrada.should.have.property('id').eql(id);
         categoriaCadastrada.should.have.property('name').eql(name);
         categoriaCadastrada.should.have.property('description').eql(description);
         done();
+        console.log(categoriaCadastrada);
+        console.log();
       });
   });
 
@@ -91,6 +97,8 @@ describe('ciclo de registro de categorias no banco de dados', () => {
         categoriaCadastrada.should.have.property('name').eql(nameV2);
         categoriaCadastrada.should.have.property('description').eql(descriptionV2);
         done();
+        console.log(categoriaCadastrada);
+        console.log();
       });
   });
 
@@ -106,6 +114,8 @@ describe('ciclo de registro de categorias no banco de dados', () => {
         categoriaCadastrada.should.have.property('name').eql(nameV2);
         categoriaCadastrada.should.have.property('description').eql(descriptionV2);
         done();
+        console.log(categoriaCadastrada);
+        console.log();
       });
   });
 
@@ -118,6 +128,22 @@ describe('ciclo de registro de categorias no banco de dados', () => {
         res.body.response.categoriesList.results.should.be.a('array');
         res.body.response.categoriesList.results.length.should.be.eql(0);
         done();
+        console.log(`Número de registros encontrados: ${res.body.response.categoriesList.results.length}`);
+        console.log();
+      });
+  });
+
+  it('consultar categoria excluída através da rota getCategoryById', done => {
+    chai.request('http://localhost:3000')
+      .get(`/v1/categories/${id}`)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.response.categoriesList.results.should.be.a('array');
+        res.body.response.categoriesList.results.length.should.be.eql(0);
+        done();
+        console.log(`Número de registros encontrados: ${res.body.response.categoriesList.results.length}`);
+        console.log();
       });
   });
 
