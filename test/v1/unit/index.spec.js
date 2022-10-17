@@ -6,8 +6,10 @@ process.env.NODE_ENV = 'test';
 
 const pathCategories = '/v1/categories';
 const pathCategoryById = '/v1/categories/{id}';
+
 const pathCars = '/v1/cars';
 const pathCarById = '/v1/cars/{id}';
+const pathCarsByCategoryId = '/v1/cars/categories/{id}';
 
 describe('server', () => {
   it('deve ser um objeto', async () => {
@@ -145,6 +147,24 @@ describe('rota getCarById', () => {
   });
   it('deve ter uma propriedade config.validate.params', async () => {
     chai.expect(routes.getCarById.config.validate).to.have.property('params');
+  });
+});
+
+describe('rota getCarsByCategoryId', () => {
+  it('deve ser um objeto', async () => {
+    chai.expect(typeof routes.getCarsByCategoryId).to.equal('object');
+  });
+  it(`deve ter uma propriedade path igual a ${pathCarById}`, async () => {
+    chai.expect(routes.getCarsByCategoryId).to.have.property('path').eql(pathCarsByCategoryId);
+  });
+  it('deve ter uma propriedade method igual a GET', async () => {
+    chai.expect(routes.getCarsByCategoryId).to.have.property('method').eql('GET');
+  });
+  it('deve ter uma propriedade config.handler', async () => {
+    chai.expect(routes.getCarsByCategoryId.config).to.have.property('handler');
+  });
+  it('deve ter uma propriedade config.validate.params', async () => {
+    chai.expect(routes.getCarsByCategoryId.config.validate).to.have.property('params');
   });
 });
 

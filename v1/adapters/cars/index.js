@@ -104,6 +104,38 @@ const carsWrapper = ({ config, commons, application }) => {
     }
   };
 
+  const getCarsByCategoryId = async ({ event, onSucess, onError }) => {
+    try {
+      const client = await pool.connect();
+      const result = await client.query(`
+        SELECT
+          car.id, 
+          car.name, 
+          car.brand, 
+          car.description, 
+          car.dailyRate, 
+          car.categoryId, 
+          cat.name AS categoryName, 
+          cat.description AS categoryDescription, 
+          car.available, 
+          car.licensePlate 
+        FROM 
+          cars AS car, 
+          categories AS cat 
+        WHERE 
+          car.categoryId = cat.id and
+          cat.id = '${event.params.id}'
+      `);
+      const results = { results: (result) ? result.rows : null };
+      client.release();
+      return onSucess({ carsList: results, version: application.version });
+    } catch (err) {
+      console.error(err);
+      event.send(`Error: ${err}`);
+      return `Error: ${err}`;
+    }
+  };
+
   const postCar = async ({ event, onSucess, onError }) => {
     try {
       const client = await pool.connect();
@@ -228,6 +260,7 @@ const carsWrapper = ({ config, commons, application }) => {
   return {
     getCars,
     getCarById,
+    getCarsByCategoryId,
     postCar,
     putCar,
     deleteCar,

@@ -45,6 +45,12 @@ module.exports = dependencies => ({
     application: dependencies.application,
   }).getCarById,
 
+  getCarsByCategoryId: carsWrapper({
+    config: dependencies.config,
+    commons: dependencies.commons,
+    application: dependencies.application,
+  }).getCarsByCategoryId,
+
   postCar: carsWrapper({
     config: dependencies.config,
     commons: dependencies.commons,
