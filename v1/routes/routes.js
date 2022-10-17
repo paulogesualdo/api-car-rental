@@ -47,6 +47,22 @@ const getCarsByCategoryId = {
   },
 };
 
+const getCarsByAvailability = {
+  path: '/v1/cars/available/{available}',
+  method: 'GET',
+  config: {
+    tags: ['api'],
+    handler: controller.getCarsByAvailability,
+    description: 'Obter carros pela disponibilidade',
+    notes: 'Obtém os carros cuja disponibilidade é passada como parâmetro (true ou false)',
+    validate: {
+      params: Joi.object({
+        available: Joi.boolean().required(),
+      }),
+    },
+  },
+};
+
 const postCar = {
   path: '/v1/cars',
   method: 'POST',
@@ -195,6 +211,7 @@ module.exports = {
   getCars,
   getCarById,
   getCarsByCategoryId,
+  getCarsByAvailability,
   postCar,
   putCar,
   deleteCar,
