@@ -51,6 +51,12 @@ function carsWrapper({ config, commons, adapters }) {
     onError: () => {},
   });
 
+  const getCarsByCategoryId = async event => adapters.getCarsByCategoryId({
+    event,
+    onSucess: response => ({ response }),
+    onError: () => {},
+  });
+
   const postCar = async event => adapters.postCar({
     event,
     onSucess: response => ({ response }),
@@ -72,6 +78,7 @@ function carsWrapper({ config, commons, adapters }) {
   return {
     getCars,
     getCarById,
+    getCarsByCategoryId,
     postCar,
     putCar,
     deleteCar,

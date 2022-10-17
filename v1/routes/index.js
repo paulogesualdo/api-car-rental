@@ -3,6 +3,7 @@ const {
   getCars,
   postCar,
   getCarById,
+  getCarsByCategoryId,
   putCar,
   deleteCar,
 
@@ -19,6 +20,7 @@ module.exports = [
   getCars,
   postCar,
   getCarById,
+  getCarsByCategoryId,
   putCar,
   deleteCar,
 

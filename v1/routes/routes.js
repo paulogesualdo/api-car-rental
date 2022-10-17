@@ -31,6 +31,22 @@ const getCarById = {
   },
 };
 
+const getCarsByCategoryId = {
+  path: '/v1/cars/categories/{id}',
+  method: 'GET',
+  config: {
+    tags: ['api'],
+    handler: controller.getCarsByCategoryId,
+    description: 'Obter carros pelo id da categoria',
+    notes: 'Obtém os carros cujo id da categoria é passado como parâmetro',
+    validate: {
+      params: Joi.object({
+        id: Joi.string().required(),
+      }),
+    },
+  },
+};
+
 const postCar = {
   path: '/v1/cars',
   method: 'POST',
@@ -178,6 +194,7 @@ module.exports = {
 
   getCars,
   getCarById,
+  getCarsByCategoryId,
   postCar,
   putCar,
   deleteCar,
