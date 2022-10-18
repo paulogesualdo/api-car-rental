@@ -70,10 +70,9 @@ const getCarsByDescription = {
     tags: ['api'],
     handler: controller.getCarsByDescription,
     description: 'Obter carros pela descrição',
-    notes: `Obtém os carros que contém uma palavra, várias palavras ou uma frase na descrição.
+    notes: `Obtém os carros que contém uma ou várias palavras na descrição.
 Se for uma palavra, a mesma deve ser passada como parâmetro. Exemplo: vermelho
-Se forem duas ou mais palavras, as mesmas devem ser passadas como parâmetro separadas por "&". Exemplo: vermelho&automático
-Se for uma frase, a mesma deve ser passada como parâmetro, iniciando e finalizando com " e com palavras separadas por "+". Exemplo: "Ar:&Automático"`,
+Se forem duas ou mais palavras, as mesmas devem ser passadas como parâmetro separadas por "&". Exemplo: vermelho&automático`,
     validate: {
       params: Joi.object({
         description: Joi.string().required(),
