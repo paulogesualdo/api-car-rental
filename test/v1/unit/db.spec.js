@@ -13,7 +13,7 @@ const init = async () => {
 
 init();
 
-describe('ciclo de registro no banco de dados', () => {
+describe('ciclos CRUD no banco de dados', () => {
 
   let category1Id = '';
 
@@ -32,15 +32,15 @@ describe('ciclo de registro no banco de dados', () => {
 
   const car1Name = 'Argo';
   const car1Brand = 'Fiat';
-  const car1Description = 'Cor: Vermelho, Câmbio: Automático, Ar-Condicionado: Sim';
-  const car1DailyRate = 150;
+  const car1Description = 'Veículo de cor vermelha, com câmbio automático e ar-condicionado';
+  const car1DailyRate = 170;
   const car1Available = false;
   const car1LicensePlate = 'QNB2203'
 
   const car1NameV2 = 'Argo V2';
   const car1BrandV2 = 'Fiat V2';
-  const car1DescriptionV2 = 'Cor: Vermelho, Câmbio: Automático, Ar-Condicionado: Sim (V2)';
-  const car1DailyRateV2 = 160;
+  const car1DescriptionV2 = 'Veículo de cor prata, com câmbio manual e ventilador';
+  const car1DailyRateV2 = 150;
   const car1AvailableV2 = true;
   const car1LicensePlateV2 = 'QNB2204'
 
@@ -48,8 +48,8 @@ describe('ciclo de registro no banco de dados', () => {
 
   const car2Name = 'Onix';
   const car2Brand = 'Chevrolet';
-  const car2Description = 'Cor: Prata, Câmbio: Automático, Ar-Condicionado: Sim';
-  const car2DailyRate = 150;
+  const car2Description = 'Veículo de cor prata, com câmbio automático e ar-condicionado';
+  const car2DailyRate = 170;
   const car2Available = true;
   const car2LicensePlate = 'NYS0A35'
 
@@ -421,6 +421,58 @@ describe('ciclo de registro no banco de dados', () => {
 
   });
 
+  it('consultar carros por uma palavra na descrição através da rota getCarsByDescription', done => {
+    
+    chai.request('http://localhost:3000')
+      .get(`/v1/cars/description/pRaTa`)
+      .end((err, res) => {
+        
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.response.carsList.results.should.be.a('array');
+        const response = res.body.response.carsList.results;
+
+        let cont = 0;
+        response.forEach(x => {
+          if ( x.id === car1Id || x.id === car2Id ) cont ++; 
+        })
+        cont.should.be.eql(2);
+        
+        done();
+        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
+        console.log();
+
+      }
+    );
+
+  });
+
+  it('consultar carros por mais de uma palavra na descrição através da rota getCarsByDescription', done => {
+    
+    chai.request('http://localhost:3000')
+      .get(`/v1/cars/description/pRaTa&aUtOmÁtIcO`)
+      .end((err, res) => {
+        
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.response.carsList.results.should.be.a('array');
+        const response = res.body.response.carsList.results;
+
+        let cont = 0;
+        response.forEach(x => {
+          if ( x.id === car1Id || x.id === car2Id ) cont ++; 
+        })
+        cont.should.be.eql(1);
+        
+        done();
+        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
+        console.log();
+
+      }
+    );
+
+  });
+
   it('consultar carros indisponíveis através da rota getCarsByAvailability', done => {
     
     chai.request('http://localhost:3000')
@@ -441,7 +493,7 @@ describe('ciclo de registro no banco de dados', () => {
         done();
         console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
         console.log();
-        
+
       }
     );
 

@@ -8,6 +8,7 @@ module.exports = ({ adapters, config }) => ({
   getCarById: carsController({ config, commons, adapters }).getCarById,
   getCarsByCategoryId: carsController({ config, commons, adapters }).getCarsByCategoryId,
   getCarsByAvailability: carsController({ config, commons, adapters }).getCarsByAvailability,  
+  getCarsByDescription: carsController({ config, commons, adapters }).getCarsByDescription, 
   postCar: carsController({ config, commons, adapters }).postCar,
   putCar: carsController({ config, commons, adapters }).putCar,
   deleteCar: carsController({ config, commons, adapters }).deleteCar,

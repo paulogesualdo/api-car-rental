@@ -11,6 +11,7 @@ const pathCars = '/v1/cars';
 const pathCarById = '/v1/cars/{id}';
 const pathCarsByCategoryId = '/v1/cars/categories/{id}';
 const pathCarsByAvailability = '/v1/cars/available/{available}';
+const pathCarsByDescription = '/v1/cars/description/{description}';
 
 describe('server', () => {
   it('deve ser um objeto', async () => {
@@ -184,6 +185,24 @@ describe('rota getCarsByAvailability', () => {
   });
   it('deve ter uma propriedade config.validate.params', async () => {
     chai.expect(routes.getCarsByAvailability.config.validate).to.have.property('params');
+  });
+});
+
+describe('rota getCarsByDescription', () => {
+  it('deve ser um objeto', async () => {
+    chai.expect(typeof routes.getCarsByDescription).to.equal('object');
+  });
+  it(`deve ter uma propriedade path igual a ${pathCarsByDescription}`, async () => {
+    chai.expect(routes.getCarsByDescription).to.have.property('path').eql(pathCarsByDescription);
+  });
+  it('deve ter uma propriedade method igual a GET', async () => {
+    chai.expect(routes.getCarsByDescription).to.have.property('method').eql('GET');
+  });
+  it('deve ter uma propriedade config.handler', async () => {
+    chai.expect(routes.getCarsByDescription.config).to.have.property('handler');
+  });
+  it('deve ter uma propriedade config.validate.params', async () => {
+    chai.expect(routes.getCarsByDescription.config.validate).to.have.property('params');
   });
 });
 
