@@ -2,8 +2,6 @@ const chai = require('chai');
 const server = require('../../../server');
 const routes = require('../../../v1/routes/routes');
 
-process.env.NODE_ENV = 'test';
-
 const pathCategories = '/v1/categories';
 const pathCategoryById = '/v1/categories/{id}';
 

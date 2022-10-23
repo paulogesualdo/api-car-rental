@@ -10,9 +10,9 @@
     "lint:fix": "eslint --fix *.js",
     "prepare": "husky install",
     "test": "npm run test:unit && npm run test:int",
-    "test:unit": "mocha ./test/v1/unit/index.spec.js",
-    "test:int": "mocha ./test/v1/integration/*.spec.js",
-    "test:db": "mocha --exit --timeout 20000 ./test/v1/unit/db.spec.js"
+    "test:unit": "NODE_ENV=test mocha ./test/v1/unit/index.spec.js",
+    "test:int": "NODE_ENV=test mocha ./test/v1/integration/*.spec.js",
+    "test:db": "NODE_ENV=test mocha --exit --timeout 20000 ./test/v1/unit/db.spec.js"
   },
   "engines": {
     "node": "^v14.17.0",

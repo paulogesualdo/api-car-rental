@@ -3,8 +3,6 @@ const chaiHttp = require('chai-http');
 const commons = require('../../../commons')
 const index = require('../../../index');
 
-process.env.NODE_ENV = 'test';
-
 chai.should();
 chai.use(chaiHttp);
 
