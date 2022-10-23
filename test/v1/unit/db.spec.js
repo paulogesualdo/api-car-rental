@@ -14,11 +14,11 @@ const init = async () => {
 
 init();
 
-describe('ciclos CRUD no banco de dados', () => {
+describe('Ciclos CRUD no Banco de Dados', () => {
 
   console.log();
 
-  it('cadastrar categoria 1 através da rota postCategory', done => {
+  it('Deve cadastrar categoria 1 através da rota postCategory', done => {
     
     chai.request('http://localhost:3000')
       .post('/v1/categories')
@@ -40,7 +40,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('cadastrar categoria 2 através da rota postCategory', done => {
+  it('Deve cadastrar categoria 2 através da rota postCategory', done => {
 
     chai.request('http://localhost:3000')
       .post('/v1/categories')
@@ -62,7 +62,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar categorias através da rota getCategories', done => {
+  it('Deve consultar categorias através da rota getCategories', done => {
     
     chai.request('http://localhost:3000')
       .get('/v1/categories')
@@ -88,7 +88,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar categoria 1 através da rota getCategoryById', done => {
+  it('Deve consultar categoria 1 através da rota getCategoryById', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/categories/${commons.category1.id}`)
@@ -108,7 +108,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('editar categoria 1 através da rota putCategory', done => {
+  it('Deve editar categoria 1 através da rota putCategory', done => {
     
     chai.request('http://localhost:3000')
       .put(`/v1/categories/${commons.category1.id}`)
@@ -129,7 +129,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar categoria 1 editada através da rota getCategoryById', done => {
+  it('Deve consultar categoria 1 editada através da rota getCategoryById', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/categories/${commons.category1.id}`)
@@ -149,7 +149,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('cadastrar carro 1 através da rota postCar', done => {
+  it('Deve cadastrar carro 1 através da rota postCar', done => {
     
     commons.car1.categoryId = commons.category1.id;
 
@@ -178,7 +178,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('cadastrar carro 2 através da rota postCar', done => {
+  it('Deve cadastrar carro 2 através da rota postCar', done => {
     
     commons.car2.categoryId = commons.category2.id;
 
@@ -207,7 +207,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar carros através da rota getCars', done => {
+  it('Deve consultar carros através da rota getCars', done => {
     
     chai.request('http://localhost:3000')
       .get('/v1/cars')
@@ -233,7 +233,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar carro 1 através da rota getCarById', done => {
+  it('Deve consultar carro 1 através da rota getCarById', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/cars/${commons.car1.id}`)
@@ -258,7 +258,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('editar carro 1 através da rota putCar', done => {
+  it('Deve editar carro 1 através da rota putCar', done => {
     
     commons.editedCar1.categoryId = commons.category2.id;
     
@@ -286,7 +286,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar carros da categoria 2 através da rota getCarsByCategoryId', done => {
+  it('Deve consultar carros da categoria 2 através da rota getCarsByCategoryId', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/cars/categories/${commons.category2.id}`)
@@ -303,7 +303,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar carros da categoria 1 através da rota getCarsByCategoryId', done => {
+  it('Deve consultar carros da categoria 1 através da rota getCarsByCategoryId', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/cars/categories/${commons.category1.id}`)
@@ -319,7 +319,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar carros disponíveis através da rota getCarsByAvailability', done => {
+  it('Deve consultar carros disponíveis através da rota getCarsByAvailability', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/cars/available/true`)
@@ -345,7 +345,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar carros por uma palavra na descrição através da rota getCarsByDescription', done => {
+  it('Deve consultar carros por uma palavra na descrição através da rota getCarsByDescription', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/cars/description/pRaTa`)
@@ -371,7 +371,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar carros por mais de uma palavra na descrição através da rota getCarsByDescription', done => {
+  it('Deve consultar carros por mais de uma palavra na descrição através da rota getCarsByDescription', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/cars/description/pRaTa&aUtOmÁtIcO`)
@@ -397,7 +397,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar carros indisponíveis através da rota getCarsByAvailability', done => {
+  it('Deve consultar carros indisponíveis através da rota getCarsByAvailability', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/cars/available/false`)
@@ -423,7 +423,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('excluir carro 1 através da rota deleteCar', done => {
+  it('Deve excluir carro 1 através da rota deleteCar', done => {
     
     chai.request('http://localhost:3000')
       .delete(`/v1/cars/${commons.car1.id}`)
@@ -440,7 +440,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('excluir carro 2 através da rota deleteCar', done => {
+  it('Deve excluir carro 2 através da rota deleteCar', done => {
     
     chai.request('http://localhost:3000')
       .delete(`/v1/cars/${commons.car2.id}`)
@@ -457,7 +457,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar carro 1 excluído através da rota getCarById', done => {
+  it('Deve consultar carro 1 excluído através da rota getCarById', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/cars/${commons.car1.id}`)
@@ -474,7 +474,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('excluir categoria 1 através da rota deleteCategory', done => {
+  it('Deve excluir categoria 1 através da rota deleteCategory', done => {
     
     chai.request('http://localhost:3000')
       .delete(`/v1/categories/${commons.category1.id}`)
@@ -491,7 +491,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('consultar categoria 1 excluída através da rota getCategoryById', done => {
+  it('Deve consultar categoria 1 excluída através da rota getCategoryById', done => {
     
     chai.request('http://localhost:3000')
       .get(`/v1/categories/${commons.category1.id}`)
@@ -508,7 +508,7 @@ describe('ciclos CRUD no banco de dados', () => {
 
   });
 
-  it('excluir categoria 2 através da rota deleteCategory', done => {
+  it('Deve excluir categoria 2 através da rota deleteCategory', done => {
     
     chai.request('http://localhost:3000')
       .delete(`/v1/categories/${commons.category2.id}`)
