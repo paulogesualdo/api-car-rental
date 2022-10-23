@@ -14,8 +14,6 @@ init();
 
 describe('Ciclos CRUD no Banco de Dados', () => {
 
-  console.log();
-
   it('Deve cadastrar categoria 1 através da rota postCategory', done => {
     
     chai.request('http://localhost:3000')
@@ -31,8 +29,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('name').eql(commons.category1.name);
         response.should.have.property('description').eql(commons.category1.description);
         done();
-        console.log(response);
-        console.log();
       }
     );
 
@@ -53,8 +49,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('name').eql(commons.category2.name);
         response.should.have.property('description').eql(commons.category2.description);
         done();
-        console.log(response);
-        console.log();
       }
     );
 
@@ -78,8 +72,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         cont.should.be.eql(2);
         
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.categoriesList.results.length}`);
-        console.log();
 
       }
     );
@@ -99,8 +91,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('name').eql(commons.category1.name);
         response.should.have.property('description').eql(commons.category1.description);
         done();
-        console.log(response);
-        console.log();
       }
     );
 
@@ -120,8 +110,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('name').eql(commons.editedCategory1.name);
         response.should.have.property('description').eql(commons.editedCategory1.description);
         done();
-        console.log(response);
-        console.log();
       }
     );
 
@@ -140,8 +128,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('name').eql(commons.editedCategory1.name);
         response.should.have.property('description').eql(commons.editedCategory1.description);
         done();
-        console.log(response);
-        console.log();
       }
     );
 
@@ -169,8 +155,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('available').eql(commons.car1.available);
         response.should.have.property('licenseplate').eql(commons.car1.licensePlate);
         done();
-        console.log(response);
-        console.log();
       }
     );
 
@@ -198,8 +182,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('available').eql(commons.car2.available);
         response.should.have.property('licenseplate').eql(commons.car2.licensePlate);
         done();
-        console.log(response);
-        console.log();
       }
     );
 
@@ -223,8 +205,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         cont.should.be.eql(2);
         
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log();
 
       }
     );
@@ -249,8 +229,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('available').eql(commons.car1.available);
         response.should.have.property('licenseplate').eql(commons.car1.licensePlate);
         done();
-        console.log(response);
-        console.log();
       }
     );
 
@@ -277,8 +255,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('available').eql(commons.editedCar1.available);
         response.should.have.property('licenseplate').eql(commons.editedCar1.licensePlate);
         done();
-        console.log(response);
-        console.log();
       }
     );
 
@@ -293,9 +269,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         res.body.should.be.a('object');
         res.body.response.carsList.results.length.should.be.eql(2);
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log(res.body.response.carsList.results)
-        console.log();
       }
     );
 
@@ -310,8 +283,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         res.body.should.be.a('object');
         res.body.response.carsList.results.length.should.be.eql(0);
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log();
       }
     );
 
@@ -335,8 +306,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         cont.should.be.eql(2);
         
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log();
 
       }
     );
@@ -361,8 +330,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         cont.should.be.eql(2);
         
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log();
 
       }
     );
@@ -387,8 +354,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         cont.should.be.eql(1);
         
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log();
 
       }
     );
@@ -413,8 +378,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         cont.should.be.eql(0);
         
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log();
 
       }
     );
@@ -431,8 +394,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         res.body.response.carsList.results.should.be.a('array');
         res.body.response.carsList.results.length.should.be.eql(0);
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log();
       }
     );
 
@@ -448,8 +409,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         res.body.response.carsList.results.should.be.a('array');
         res.body.response.carsList.results.length.should.be.eql(0);
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log();
       }
     );
 
@@ -465,8 +424,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         res.body.response.carsList.results.should.be.a('array');
         res.body.response.carsList.results.length.should.be.eql(0);
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.carsList.results.length}`);
-        console.log();
       }
     );
 
@@ -482,8 +439,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         res.body.response.categoriesList.results.should.be.a('array');
         res.body.response.categoriesList.results.length.should.be.eql(0);
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.categoriesList.results.length}`);
-        console.log();
       }
     );
 
@@ -499,8 +454,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         res.body.response.categoriesList.results.should.be.a('array');
         res.body.response.categoriesList.results.length.should.be.eql(0);
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.categoriesList.results.length}`);
-        console.log();
       }
     );
 
@@ -516,8 +469,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         res.body.response.categoriesList.results.should.be.a('array');
         res.body.response.categoriesList.results.length.should.be.eql(0);
         done();
-        console.log(`Número de registros encontrados: ${res.body.response.categoriesList.results.length}`);
-        console.log();
       }
     );
 

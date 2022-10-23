@@ -12,7 +12,8 @@
     "test": "npm run test:unit && npm run test:int",
     "test:unit": "NODE_ENV=test mocha ./test/v1/unit/index.spec.js",
     "test:int": "NODE_ENV=test mocha ./test/v1/integration/*.spec.js",
-    "test:db": "NODE_ENV=test mocha --exit --timeout 20000 ./test/v1/unit/db.spec.js"
+    "test:db": "NODE_ENV=test mocha --exit --timeout 20000 ./test/v1/unit/db.spec.js",
+    "coverage": "nyc npm run test:unit && nyc npm run test:int && nyc npm run test:db"
   },
   "engines": {
     "node": "^v14.17.0",
@@ -45,6 +46,7 @@
     "husky": "^8.0.1",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.19",
+    "nyc": "^15.1.0",
     "sinon": "^14.0.0"
   }
 }
