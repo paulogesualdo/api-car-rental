@@ -10,10 +10,10 @@ const categoriesWrapper = ({ config, commons, application }) => {
     },
   });
 
-  const getCategories = async ({ event, onSucess, onError }) => {
+  const getCategories = async ({ event, onSucess }) => {
     try {
       const client = await pool.connect();
-      const result = await client.query('SELECT * FROM categories');
+      const result = await client.query(commons.selectCategories());
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ categoriesList: results, version: application.version });
@@ -24,10 +24,10 @@ const categoriesWrapper = ({ config, commons, application }) => {
     }
   };
 
-  const getCategoryById = async ({ event, onSucess, onError }) => {
+  const getCategoryById = async ({ event, onSucess }) => {
     try {
       const client = await pool.connect();
-      const result = await client.query(`SELECT * FROM categories WHERE id = '${event.params.id}'`);
+      const result = await client.query(commons.selectCategories(event.params.id));
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ categoriesList: results, version: application.version });
@@ -38,7 +38,7 @@ const categoriesWrapper = ({ config, commons, application }) => {
     }
   };
 
-  const postCategory = async ({ event, onSucess, onError }) => {
+  const postCategory = async ({ event, onSucess }) => {
     try {
       const client = await pool.connect();
       const id = uuid();
@@ -46,7 +46,7 @@ const categoriesWrapper = ({ config, commons, application }) => {
         '${id}', 
         '${event.payload.name}', 
         '${event.payload.description}')`);
-      const result = await client.query(`SELECT * FROM categories WHERE id = '${id}'`);
+      const result = await client.query(commons.selectCategories(id));
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ categoriesList: results, version: application.version });
@@ -57,14 +57,14 @@ const categoriesWrapper = ({ config, commons, application }) => {
     }
   };
 
-  const putCategory = async ({ event, onSucess, onError }) => {
+  const putCategory = async ({ event, onSucess }) => {
     try {
       const client = await pool.connect();
       await client.query(`UPDATE categories SET
         name = '${event.payload.name}', 
         description = '${event.payload.description}'
         WHERE id = '${event.params.id}'`);
-      const result = await client.query(`SELECT * FROM categories WHERE id = '${event.params.id}'`);
+      const result = await client.query(commons.selectCategories(event.params.id));
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ categoriesList: results, version: application.version });
@@ -75,11 +75,11 @@ const categoriesWrapper = ({ config, commons, application }) => {
     }
   };
 
-  const deleteCategory = async ({ event, onSucess, onError }) => {
+  const deleteCategory = async ({ event, onSucess }) => {
     try {
       const client = await pool.connect();
       await client.query(`DELETE FROM categories WHERE id = '${event.params.id}'`);
-      const result = await client.query(`SELECT * FROM categories WHERE id = '${event.params.id}'`);
+      const result = await client.query(commons.selectCategories(event.params.id));
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ categoriesList: results, version: application.version });
