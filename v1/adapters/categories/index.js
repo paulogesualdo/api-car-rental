@@ -10,10 +10,10 @@ const categoriesWrapper = ({ config, commons, application }) => {
     },
   });
 
-  const getCategories = async ({ event, onSucess }) => {
+  async function dbGetCategories(event, onSucess, query) {
     try {
       const client = await pool.connect();
-      const result = await client.query(commons.selectCategories());
+      const result = await client.query(query);
       const results = { results: (result) ? result.rows : null };
       client.release();
       return onSucess({ categoriesList: results, version: application.version });
@@ -22,21 +22,19 @@ const categoriesWrapper = ({ config, commons, application }) => {
       event.send(`Error: ${err}`);
       return `Error: ${err}`;
     }
-  };
+  }
 
-  const getCategoryById = async ({ event, onSucess }) => {
-    try {
-      const client = await pool.connect();
-      const result = await client.query(commons.selectCategories(event.params.id));
-      const results = { results: (result) ? result.rows : null };
-      client.release();
-      return onSucess({ categoriesList: results, version: application.version });
-    } catch (err) {
-      console.error(err);
-      event.send(`Error: ${err}`);
-      return `Error: ${err}`;
-    }
-  };
+  const getCategories = async ({ event, onSucess }) => dbGetCategories(
+    event,
+    onSucess,
+    commons.selectCategories(),
+  );
+
+  const getCategoryById = async ({ event, onSucess }) => dbGetCategories(
+    event,
+    onSucess,
+    commons.selectCategories(event.params.id),
+  );
 
   const postCategory = async ({ event, onSucess }) => {
     try {
