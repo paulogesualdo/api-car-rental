@@ -63,6 +63,24 @@ const getCarsByAvailability = {
   },
 };
 
+const getCarsByDescription = {
+  path: '/v1/cars/description/{description}',
+  method: 'GET',
+  config: {
+    tags: ['api'],
+    handler: controller.getCarsByDescription,
+    description: 'Obter carros pela descrição',
+    notes: `Obtém os carros que contém uma ou várias palavras na descrição.
+Se for uma palavra, a mesma deve ser passada como parâmetro. Exemplo: vermelho
+Se forem duas ou mais palavras, as mesmas devem ser passadas como parâmetro separadas por "&". Exemplo: vermelho&automático`,
+    validate: {
+      params: Joi.object({
+        description: Joi.string().required(),
+      }),
+    },
+  },
+};
+
 const postCar = {
   path: '/v1/cars',
   method: 'POST',
@@ -212,6 +230,7 @@ module.exports = {
   getCarById,
   getCarsByCategoryId,
   getCarsByAvailability,
+  getCarsByDescription,
   postCar,
   putCar,
   deleteCar,

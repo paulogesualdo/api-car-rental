@@ -57,6 +57,12 @@ module.exports = dependencies => ({
     application: dependencies.application,
   }).getCarsByAvailability,
 
+  getCarsByDescription: carsWrapper({
+    config: dependencies.config,
+    commons: dependencies.commons,
+    application: dependencies.application,
+  }).getCarsByDescription,
+
   postCar: carsWrapper({
     config: dependencies.config,
     commons: dependencies.commons,
