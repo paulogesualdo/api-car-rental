@@ -32,11 +32,9 @@ module.exports = dependencies => ({
   // abaixo.
 
   getCars: carsWrapper({
-
     config: dependencies.config,
     commons: dependencies.commons,
     application: dependencies.application,
-
   }).getCars,
 
   getCarById: carsWrapper({
@@ -82,11 +80,9 @@ module.exports = dependencies => ({
   }).deleteCar,
 
   getCategories: categoriesWrapper({
-
     config: dependencies.config,
     commons: dependencies.commons,
     application: dependencies.application,
-
   }).getCategories,
 
   getCategoryById: categoriesWrapper({

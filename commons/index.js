@@ -13,6 +13,16 @@ const category2 = {
   description: 'Veículo similar a: Fiat Mobi 1.0, Fiat Uno 1.0, Renault Kwid 1.0, dentre outros.',
 };
 
+const category3 = {
+  name: category1.name,
+  description: category2.description,
+};
+
+const category4 = {
+  name: category2.name,
+  description: category1.description,
+};
+
 const car1 = {
   name: 'Uno',
   brand: 'Fia',
@@ -61,9 +71,9 @@ function selectCars(add) {
   return query;
 }
 
-function selectCategories(id) {
+function selectCategories(where) {
   let query = 'SELECT * FROM categories';
-  if (id) query += ` WHERE id = '${id}'`;
+  if (where) query += ` WHERE ${where}`;
   return query;
 }
 
@@ -71,6 +81,8 @@ module.exports = {
   category1,
   editedCategory1,
   category2,
+  category3,
+  category4,
   car1,
   editedCar1,
   car2,
