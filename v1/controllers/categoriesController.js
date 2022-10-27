@@ -15,19 +15,19 @@ function categoriesWrapper({ config, commons, adapters }) {
   const postCategory = async event => adapters.postCategory({
     event,
     onSucess: response => ({ response }),
-    onError: () => {},
+    onError: response => ({ response }),
   });
 
   const putCategory = async event => adapters.putCategory({
     event,
     onSucess: response => ({ response }),
-    onError: () => {},
+    onError: response => ({ response }),
   });
 
   const deleteCategory = async event => adapters.deleteCategory({
     event,
     onSucess: response => ({ response }),
-    onError: () => {},
+    onError: response => ({ response }),
   });
 
   return {
