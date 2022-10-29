@@ -74,8 +74,12 @@ const categoriesWrapper = ({ config, commons, application }) => {
     try {
 
       const client = await pool.connect();
-      const categoriesWithSameName = await client.query(commons.selectCategories(`name = '${event.payload.name}'`));
-      const categoriesWithSameDescription = await client.query(commons.selectCategories(`description = '${event.payload.description}'`));
+      const categoriesWithSameName = await client.query(
+        commons.selectCategories(`name = '${event.payload.name}' AND id <> '${event.params.id}'`),
+      );
+      const categoriesWithSameDescription = await client.query(
+        commons.selectCategories(`description = '${event.payload.description}' AND id <> '${event.params.id}'`),
+      );
 
       if (categoriesWithSameName.rowCount === 0 && categoriesWithSameDescription.rowCount === 0) {
         await client.query(`UPDATE categories SET

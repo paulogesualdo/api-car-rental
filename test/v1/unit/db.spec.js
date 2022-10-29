@@ -57,32 +57,6 @@ describe('Ciclos CRUD no Banco de Dados', () => {
       });
   });
 
-  it('Deve retornar mensagem ao tentar editar categoria com nome já existente', done => {
-    chai.request('http://localhost:3000')
-      .put(`/v1/categories/${commons.category1.id}`)
-      .send(commons.category3)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.response.message.should.be.a('string');
-        res.body.response.message.should.be.eql('Não é possível editar categoria com nome que já existe no sistema.');
-        done();
-      });
-  });
-
-  it('Deve retornar mensagem ao tentar editar categoria com descrição já existente', done => {
-    chai.request('http://localhost:3000')
-      .put(`/v1/categories/${commons.category1.id}`)
-      .send(commons.category4)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.response.message.should.be.a('string');
-        res.body.response.message.should.be.eql('Não é possível editar categoria com descrição que já existe no sistema.');
-        done();
-      });
-  });
-
   it('Deve cadastrar categoria 2 através da rota postCategory', done => {
     chai.request('http://localhost:3000')
       .post('/v1/categories')
@@ -96,6 +70,32 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('id');
         response.should.have.property('name').eql(commons.category2.name);
         response.should.have.property('description').eql(commons.category2.description);
+        done();
+      });
+  });
+
+  it('Deve retornar mensagem ao tentar editar categoria com nome já existente', done => {
+    chai.request('http://localhost:3000')
+      .put(`/v1/categories/${commons.category2.id}`)
+      .send(commons.category3)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.response.message.should.be.a('string');
+        res.body.response.message.should.be.eql('Não é possível editar categoria com nome que já existe no sistema.');
+        done();
+      });
+  });
+
+  it('Deve retornar mensagem ao tentar editar categoria com descrição já existente', done => {
+    chai.request('http://localhost:3000')
+      .put(`/v1/categories/${commons.category2.id}`)
+      .send(commons.category4)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.response.message.should.be.a('string');
+        res.body.response.message.should.be.eql('Não é possível editar categoria com descrição que já existe no sistema.');
         done();
       });
   });
@@ -192,6 +192,22 @@ describe('Ciclos CRUD no Banco de Dados', () => {
       });
   });
 
+  it('Deve retornar mensagem ao tentar cadastrar carro com placa já existente', done => {
+
+    commons.car3.categoryId = commons.category1.id;
+
+    chai.request('http://localhost:3000')
+      .post('/v1/cars')
+      .send(commons.car3)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.response.message.should.be.a('string');
+        res.body.response.message.should.be.eql('Não é possível cadastrar carro com placa que já existe no sistema.');
+        done();
+      });
+  });
+
   it('Deve cadastrar carro 2 através da rota postCar', done => {
 
     commons.car2.categoryId = commons.category2.id;
@@ -213,6 +229,22 @@ describe('Ciclos CRUD no Banco de Dados', () => {
         response.should.have.property('categoryid').eql(commons.car2.categoryId);
         response.should.have.property('available').eql(commons.car2.available);
         response.should.have.property('licenseplate').eql(commons.car2.licensePlate);
+        done();
+      });
+  });
+
+  it('Deve retornar mensagem ao tentar editar carro com placa já existente', done => {
+
+    commons.car3.categoryId = commons.category2.id;
+
+    chai.request('http://localhost:3000')
+      .put(`/v1/cars/${commons.car2.id}`)
+      .send(commons.car3)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.response.message.should.be.a('string');
+        res.body.response.message.should.be.eql('Não é possível editar carro com placa que já existe no sistema.');
         done();
       });
   });
