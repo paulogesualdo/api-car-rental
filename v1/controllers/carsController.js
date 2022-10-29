@@ -12,7 +12,7 @@
 //   reutilizadas ao longo do programa como uma
 //   calculadora por exemplo, que vieram da pasta commons
 //   que fica na raiz do sistema
-// - adapters: 
+// - adapters:
 
 function carsWrapper({ config, commons, adapters }) {
 
@@ -72,13 +72,13 @@ function carsWrapper({ config, commons, adapters }) {
   const postCar = async event => adapters.postCar({
     event,
     onSucess: response => ({ response }),
-    onError: () => {},
+    onError: response => ({ response }),
   });
 
   const putCar = async event => adapters.putCar({
     event,
     onSucess: response => ({ response }),
-    onError: () => {},
+    onError: response => ({ response }),
   });
 
   const deleteCar = async event => adapters.deleteCar({

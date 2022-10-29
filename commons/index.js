@@ -50,6 +50,15 @@ const car2 = {
   licensePlate: 'QNB2203',
 };
 
+const car3 = {
+  name: car2.name,
+  brand: car2.brand,
+  description: car2.description,
+  dailyRate: car2.dailyRate,
+  available: car2.available,
+  licensePlate: car1.licensePlate,
+};
+
 function selectCars(add) {
   let query = `SELECT
                 car.id, 
@@ -86,6 +95,7 @@ module.exports = {
   car1,
   editedCar1,
   car2,
+  car3,
   selectCars,
   selectCategories,
 };

@@ -85,25 +85,34 @@ const carsWrapper = ({ config, commons, application }) => {
     commons.selectCars(`AND to_tsvector(car.description) @@ to_tsquery('${event.params.description}')`),
   );
 
-  const postCar = async ({ event, onSucess }) => {
+  const postCar = async ({ event, onSucess, onError }) => {
     try {
+
       const client = await pool.connect();
-      const id = uuid();
-      await client.query(`
-        INSERT INTO cars VALUES(
-        '${id}',
-        '${event.payload.name}', 
-        '${event.payload.brand}', 
-        '${event.payload.description}',
-        ${event.payload.dailyRate}, 
-        '${event.payload.categoryId}', 
-        ${event.payload.available}, 
-        '${event.payload.licensePlate}')
-      `);
-      const result = await client.query(commons.selectCars(`AND car.id = '${id}'`));
-      const results = { results: (result) ? result.rows : null };
+      const carsWithSameLicensePlate = await client.query(commons.selectCars(`AND car.licensePlate = '${event.payload.licensePlate}'`));
+
+      if (carsWithSameLicensePlate.rowCount === 0) {
+        const id = uuid();
+        await client.query(`
+          INSERT INTO cars VALUES(
+          '${id}',
+          '${event.payload.name}', 
+          '${event.payload.brand}', 
+          '${event.payload.description}',
+          ${event.payload.dailyRate}, 
+          '${event.payload.categoryId}', 
+          ${event.payload.available}, 
+          '${event.payload.licensePlate}')
+        `);
+        const result = await client.query(commons.selectCars(`AND car.id = '${id}'`));
+        const results = { results: (result) ? result.rows : null };
+        client.release();
+        return onSucess({ carsList: results, version: application.version });
+      }
+
       client.release();
-      return onSucess({ carsList: results, version: application.version });
+      return onError({ message: 'Não é possível cadastrar carro com placa que já existe no sistema.' });
+
     } catch (err) {
       console.error(err);
       event.send(`Error: ${err}`);
@@ -111,25 +120,36 @@ const carsWrapper = ({ config, commons, application }) => {
     }
   };
 
-  const putCar = async ({ event, onSucess }) => {
+  const putCar = async ({ event, onSucess, onError }) => {
     try {
       const client = await pool.connect();
-      await client.query(`
-        UPDATE cars
-        SET
-          name = '${event.payload.name}', 
-          brand = '${event.payload.brand}', 
-          description = '${event.payload.description}',
-          dailyRate = ${event.payload.dailyRate}, 
-          categoryId = '${event.payload.categoryId}', 
-          available = ${event.payload.available}, 
-          licensePlate = '${event.payload.licensePlate}'
-        WHERE id = '${event.params.id}'
-      `);
-      const result = await client.query(commons.selectCars(`AND car.id = '${event.params.id}'`));
-      const results = { results: (result) ? result.rows : null };
+      const carsWithSameLicensePlate = await client.query(
+        commons.selectCars(`AND car.licensePlate = '${event.payload.licensePlate}' AND car.id <> '${event.params.id}'`),
+      );
+
+      if (carsWithSameLicensePlate.rowCount === 0) {
+        await client.query(`
+          UPDATE cars
+          SET
+            name = '${event.payload.name}', 
+            brand = '${event.payload.brand}', 
+            description = '${event.payload.description}',
+            dailyRate = ${event.payload.dailyRate}, 
+            categoryId = '${event.payload.categoryId}', 
+            available = ${event.payload.available}, 
+            licensePlate = '${event.payload.licensePlate}'
+          WHERE id = '${event.params.id}'
+        `);
+        const result = await client.query(commons.selectCars(`AND car.id = '${event.params.id}'`));
+        const results = { results: (result) ? result.rows : null };
+        client.release();
+        return onSucess({ carsList: results, version: application.version });
+
+      }
+
       client.release();
-      return onSucess({ carsList: results, version: application.version });
+      return onError({ message: 'Não é possível editar carro com placa que já existe no sistema.' });
+
     } catch (err) {
       console.error(err);
       event.send(`Error: ${err}`);
