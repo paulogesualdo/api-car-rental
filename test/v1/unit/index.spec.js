@@ -245,7 +245,7 @@ describe('Rota putCar', () => {
 
 describe('Rota deleteCar', () => {
   it('Deve ser um objeto', async () => {
-    chai.expect(typeof routes.deleteCar).to.equal('object');
+    chai.expect(typeof routes.deleteCar).to.equal('string');
   });
   it(`Deve ter uma propriedade path igual a ${pathCarById}`, async () => {
     chai.expect(routes.deleteCar).to.have.property('path').eql(pathCarById);
