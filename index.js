@@ -94,3 +94,4 @@ init();
 module.exports = { init };
 
 // Adicionado comentário qualquer apenas para verificar integracao do Github com Jenkins
+// Adicionado segundo comentário de teste
