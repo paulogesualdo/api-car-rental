@@ -2,11 +2,13 @@ pipeline {
     agent any
 
     stages {
+        /*
         stage('git checkout') {
             steps {
                 git branch:'feature/readme', url:'https://github.com/paulogesualdo/api-car-rental.git'
             }
         }
+        */
         stage('install and test') {
             steps {
                 // the script is multi-line because if the instructions where in independent steps there are errors of command not found with nvm and npm
