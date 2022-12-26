@@ -92,6 +92,3 @@ const init = async () => {
 init();
 
 module.exports = { init };
-
-// Teste 11 Jenkins
-// Teste 12 Jenkins
