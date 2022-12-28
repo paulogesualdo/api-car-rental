@@ -16,8 +16,4 @@ echo ">>>>>>>> BEFORE INSTALL: NVM READY TO USE"
 nvm install v14.17.0
 echo ">>>>>>>> BEFORE INSTALL: NODE AND NPM INSTALLED"
 
-# node modules install
-# npm i
-# echo ">>>>>>>> BEFORE INSTALL: NODE MODULES INSTALLED"
-
 echo ">>>>>>>> BEFORE INSTALL: END"
