@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.js
-    destination: /home/ec2-user/teste2/
+  - source: /
+    destination: /home/ec2-user/api-car-rental
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
