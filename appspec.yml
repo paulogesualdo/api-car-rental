@@ -5,13 +5,14 @@ files:
     destination: /home/ec2-user/api-car-rental
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
+    - location: scripts/before_install.sh
       timeout: 300
       runas: root
-    - location: scripts/start_server.sh
+  AfterInstall:
+    - location: scripts/after_install.sh
       timeout: 300
       runas: root
-  ApplicationStop:
-    - location: scripts/stop_server.sh
+  ApplicationStart:
+    - location: scripts/application_start.sh
       timeout: 300
       runas: root
