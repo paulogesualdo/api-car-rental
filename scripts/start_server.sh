@@ -26,7 +26,7 @@ npm cache clean --force
 npm install
 echo ">>>>>>>> NODE MODULES INSTALLED"
 
-cd /home/ec2-user/teste2/api-car-rental/
+killall node
 
 # start server
-node index.js
+node /home/ec2-user/api-car-rental/index.js
