@@ -8,7 +8,10 @@ echo ">>>>>>>> APPLICATION START: NODE STOPPED"
 
 # start server
 cd /home/ec2-user/api-car-rental/
-npm run start:dev
+node index.js
+
+sudo systemctl enable api-car-rental.service
+sudo systemctl start api-car-rental.service
 echo ">>>>>>>> APPLICATION START: NODE STARTED"
 
-echo ">>>>>>>> APPLICATION START: END"
+echo ">>>>>>>> APPLICATION START: 
