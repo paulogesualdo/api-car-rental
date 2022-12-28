@@ -29,7 +29,8 @@ killall node
 echo ">>>>>>>> APPLICATION START: NODE STOPPED"
 
 # start server
-node /home/ec2-user/api-car-rental/index.js
+cd /home/ec2-user/api-car-rental/
+node index.js
 echo ">>>>>>>> APPLICATION START: NODE STARTED"
 
 echo ">>>>>>>> APPLICATION START: END"
