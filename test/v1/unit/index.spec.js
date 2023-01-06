@@ -257,6 +257,6 @@ describe('Rota deleteCar', () => {
     chai.expect(routes.deleteCar.config).to.have.property('handler');
   });
   it('Deve ter uma propriedade config.validate.params', async () => {
-    chai.expect(routes.deleteCar.config.validate).to.have.property('params');
+    chai.expect(routes.deleteCar.config.validate).to.have.property('param'); // Changed 'params' to 'param' only to fail the test
   });
 });
